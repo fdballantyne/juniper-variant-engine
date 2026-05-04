@@ -2,8 +2,8 @@
 
 *An AI creative iteration tool with TGA/AHPRA compliance guardrails for Australian telehealth weight-loss marketing. Built in four days as a portfolio piece for an application to Eucalyptus.*
 
-**Live demo:** [your-deployment-url-here]
-**60-second walkthrough:** *(coming Saturday)*
+**Live demo:[URL]**
+**60-second walkthrough:** *(coming Tuesday)*
 
 ---
 
