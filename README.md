@@ -2,7 +2,7 @@
 
 *An AI creative iteration tool with TGA/AHPRA compliance guardrails for Australian telehealth weight-loss marketing. Built in four days as a portfolio piece for an application to Eucalyptus.*
 
-**Live demo:[URL]**
+**Live demo:** https://juniper-variant-engine.vercel.app/
 **60-second walkthrough:** *(coming Tuesday)*
 
 ---
