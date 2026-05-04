@@ -443,11 +443,6 @@ export default function App() {
           </div>
         </div>
       )}
-
-      <div className="prod-note">
-        // prototype fonts: Source Serif 4 → Nib Pro · Inter → Atlas Grotesk · swap before production.
-      </div>
-
       {selected && selectedIdx != null && (
         <Modal
           v={selected}

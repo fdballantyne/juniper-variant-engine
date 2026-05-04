@@ -372,11 +372,3 @@
     padding: 4px; margin: -4px;
   }
   .close-x:hover { color: var(--ink); }
-
-  /* prototype font note banner */
-  .prod-note {
-    margin-top: 36px; padding: 12px 14px;
-    border-top: 1px solid var(--line-soft);
-    color: var(--muted); font-size: 11px;
-    font-family: var(--font-mono), monospace;
-  }
