@@ -29,7 +29,7 @@ The interesting thing this tool does is not the variant generation. It's the exp
 
 ![Modal showing three-rule compliance reasoning chain on a single variant](docs/screenshots/juniper-variant-engine-screenshot2.png)
 
-The screenshot above shows a single variant flagged under three different rules: pharmacological-benefit expectation language (TGA-CODE-S10-10), unsubstantiated medical-credentialling efficacy claim (TGA-CODE-S10-12), and unsubstantiated comparative claim against exercise (TGA-CODE-S11-14). Three distinct regulatory mechanisms operating on different parts of the same sentence, surfaced as three independent flags with three independent suggested rewrites.
+The screenshot above shows a single variant flagged under three different rules: pharmacological-benefit expectation language (TGA-CODE-S10-10), testimonials about clinical aspects of regulated health services (AHPRA-S133-1D-09), and unsubstantiated medical-credentialling efficacy claim (TGA-CODE-S10-12). Three distinct regulatory mechanisms operating on different parts of the same sentence, surfaced as three independent flags with three independent suggested rewrites.
 
 This is the artefact most worth interrogating if you're evaluating the tool. The variant generation matters because it produces volume. The reasoning chains matter because they make the volume safe to ship.
 
