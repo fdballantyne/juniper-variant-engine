@@ -17,11 +17,11 @@ The tool runs in ~70 seconds end-to-end. The output is ready to paste into a Met
 
 ## Why this exists
 
-Eucalyptus has solved the compliance *knowledge* problem. Zero public TGA enforcement actions against Juniper in the most-scrutinised telehealth category in Australia is the giveaway — they have a world-class compliance posture.
+Eucalyptus has solved the compliance *knowledge* problem. Zero public TGA enforcement actions against Juniper in the most-scrutinised telehealth category in Australia is the giveaway, they have a world-class compliance posture.
 
 The actual rate-limiter on growth velocity in a regulated multi-market business isn't knowing the rules; it's the time cost of generating new compliant variants at the rate the algorithms reward. Tim Doyle has talked publicly about treating *speed to learning* as the primary KPI for growth. This tool compresses the step between "one approved concept" and "10 ready-to-test variants" without compromising the compliance posture.
 
-V1 ships AU rules only. The architecture is designed to extend to UK MHRA + ASA, German HWG, and Japanese PMDA rule packs as separate parallel rule sets — that's the v2 thesis on how a tool like this generalises across Eucalyptus's four operating markets.
+V1 ships AU rules only. The architecture is designed to extend to UK MHRA + ASA, German HWG, and Japanese PMDA rule packs as separate parallel rule sets, that's the v2 thesis on how a tool like this generalises across Eucalyptus's four operating markets.
 
 ## The compliance reasoning is the hero feature
 
@@ -55,18 +55,18 @@ seed concept + channel
 
 **Stack:** Next.js 14 (app router), TypeScript, Tailwind for layout primitives plus a bespoke CSS layer derived from a design-system audit of myjuniper.com. Anthropic SDK with prompt caching. Deployed on Vercel.
 
-**No database.** State is ephemeral by design — this is a pre-flight tool, not a content management system.
+**No database.** State is ephemeral by design, this is a pre-flight tool, not a content management system.
 
 ## The rule set is the real IP
 
 The 18 compliance rules in `lib/ruleSet.ts` are derived from two pieces of primary research:
 
-1. A structured audit of TGA Therapeutic Goods Advertising Code 2021, the Therapeutic Goods Act 1989, and AHPRA s 133 Advertising Guidelines — with primary legislative source URLs cited per rule
+1. A structured audit of TGA Therapeutic Goods Advertising Code 2021, the Therapeutic Goods Act 1989, and AHPRA s 133 Advertising Guidelines, with primary legislative source URLs cited per rule
 2. A forensic catalogue of every public TGA infringement action and AHPRA tribunal decision against Australian telehealth weight-loss providers from 2022 through April 2026
 
 Each rule has a severity classification (BLOCK or FLAG), example triggering phrases tagged with confidence labels (verbatim ad copy, regulator paraphrase, guidance pattern, or rule-inferred), example compliant alternatives, and a documented enforcement track record where one exists.
 
-**Notable finding:** Eucalyptus has zero publicly-disclosed TGA enforcement actions, court-enforceable undertakings, or AHPRA findings against any of its brands. They've been the subject of professional-body criticism (Money magazine 2025; ANZAED December 2025) but not of regulator action. This shaped the calibration of the rule set — the tool errs toward FLAG rather than BLOCK on patterns Eucalyptus has been criticised for but never penalised on.
+**Notable finding:** Eucalyptus has zero publicly-disclosed TGA enforcement actions, court-enforceable undertakings, or AHPRA findings against any of its brands. They've been the subject of professional-body criticism (Money magazine 2025; ANZAED December 2025) but not of regulator action. This shaped the calibration of the rule set, the tool errs toward FLAG rather than BLOCK on patterns Eucalyptus has been criticised for but never penalised on.
 
 The full rule set is in `docs/tga_compliance_rule_set_v1.md`.
 
@@ -82,16 +82,16 @@ The fix was two changes:
 
 The combined effect: the cache write on call 1 costs a 25% premium, calls 2-10 each cost ~10% of the original input price. A single orchestrate run (10 checks back-to-back) is the sweet spot — write once, hit nine times. Total time dropped from a timeout to ~70s consistently.
 
-**The compliance-checker calibration question.** The original architecture was a *checker only* — paste in copy, get a verdict. After re-reading Eucalyptus's regulatory track record and Doyle's commentary on growth velocity, it became clear the checker solved the wrong problem. Eucalyptus's growth team doesn't need help knowing what compliant copy looks like. They need help generating compliant copy at the rate the algorithms reward. The tool was re-architected mid-build to flip from "checker" to "generator with checker as guardrail" — the rule-set work transferred over wholesale, but the user-facing flow inverted.
+**The compliance-checker calibration question.** The original architecture was a *checker only* — paste in copy, get a verdict. After re-reading Eucalyptus's regulatory track record and Doyle's commentary on growth velocity, it became clear the checker solved the wrong problem. Eucalyptus's growth team doesn't need help knowing what compliant copy looks like. They need help generating compliant copy at the rate the algorithms reward. The tool was re-architected mid-build to flip from "checker" to "generator with checker as guardrail," the rule-set work transferred over wholesale, but the user-facing flow inverted.
 
-**The PASS/FLAG/BLOCK design question.** v1 originally used three labels. Realised partway through the build that BLOCK variants in the *generation* output are tool failures, not user-facing states — there's no point displaying a variant the tool simultaneously declares unshippable. v1 surfaces only PASS and FLAG; BLOCK exists internally as a regeneration trigger (currently coerced to FLAG with full reasoning visible — full regeneration loop is v1.1).
+**The PASS/FLAG/BLOCK design question.** v1 originally used three labels. Realised partway through the build that BLOCK variants in the *generation* output are tool failures, not user-facing states, there's no point displaying a variant the tool simultaneously declares unshippable. v1 surfaces only PASS and FLAG; BLOCK exists internally as a regeneration trigger (currently coerced to FLAG with full reasoning visible, full regeneration loop is v1.1).
 
 ## What's deliberately not in v1
 
 - **UK, DE, JP rule packs.** The architecture supports rule-pack swapping per market; only AU is implemented. Cross-jurisdiction is the v2 thesis and the framing for the global compliance layer pitch.
 - **MCP server wrapper.** The API is architected to be exposed as an MCP server callable from other agents and growth pipelines. Not implemented as a wrapper for v1; the through-line argument lives in the cover letter and interview rather than in code.
 - **Server-side BLOCK regeneration loop.** v1 coerces BLOCK to FLAG for visibility. v1.1 implements 3-attempt regeneration on BLOCK with the same matrix slot.
-- **Other Eucalyptus brands.** Pilot, Software, Kin, Compound — all out of scope. Juniper-only by deliberate constraint.
+- **Other Eucalyptus brands.** Pilot, Software, Kin, Compound; all out of scope. Juniper-only by deliberate constraint.
 - **Image / video generation.** Text variants only. Visual creative variants are a v2 question.
 - **Performance prediction.** The tool generates and checks; it doesn't predict which variant will win. A/B test results are the marketer's job.
 
@@ -117,7 +117,7 @@ A single end-to-end run uses 11 Anthropic API calls (1 generation + 10 complianc
 - **The tool is calibrated to be permissive rather than aggressive.** It catches the bright-line violations and the regulator-flagged patterns; it lets through edge cases that a sharp human reviewer might push back on. This is correct for a tool running *alongside* compliance review rather than replacing it.
 - **The 70-second runtime is real.** First-time users will need expectation-setting in the loading state, which the design handles via stepped progress indication.
 - **Variant 03 in some test runs passes a quantified physiological claim ("post-menopausal women face 25% slower metabolism on average") that a careful reviewer should question.** The checker treats this as a fact about the reader rather than a service efficacy claim — defensible interpretation but worth flagging as a calibration tradeoff.
-- **Typography uses Source Serif 4 and Inter (Google Fonts, open-source) — chosen as visual analogues for Juniper's Nib Pro and Atlas Grotesk.**
+- **Typography uses Source Serif 4 and Inter (Google Fonts, open-source), chosen as visual analogues for Juniper's Nib Pro and Atlas Grotesk.**
 
 ## Credits and sources
 
